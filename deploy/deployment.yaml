@@ -1,29 +1,21 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: udacity-3-reverseproxy
   labels:
-    service: reverseproxy
-  name: reverseproxy
+    app: udacity-3-reverseproxy
 spec:
-  replicas: 1
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udacity-3-reverseproxy
   template:
     metadata:
       labels:
-        service: reverseproxy
+        app: udacity-3-reverseproxy
     spec:
       containers:
-      - image: YOUR_DOCKER_HUB/simple-reverse-proxy
-        name: reverseproxy
-        imagePullPolicy: Always          
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "1024Mi"
-            cpu: "500m"       
+      - name: udacity-3-reverseproxy
+        image: fjenkel/udacity-3-reverseproxy
         ports:
         - containerPort: 8080
-      restartPolicy: Always
-
-
