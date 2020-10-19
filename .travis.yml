@@ -1,0 +1,20 @@
+language: minimal
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+
+script:
+  - docker --version # print the version for logging
+  - docker build -t udacity-3-reverseproxy .
+  - docker tag udacity-3-reverseproxy fjenkel/udacity-3-reverseproxy:latest
+
+after_success:
+  - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push fjenkel/udacity-3-reverseproxy
