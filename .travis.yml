@@ -34,3 +34,5 @@ script:
 after_success:
   - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push fjenkel/udacity-3-reverseproxy
+  - kubectl apply ./deploy/deployment.yaml
+  - kubectl apply ./deploy/service.yaml
