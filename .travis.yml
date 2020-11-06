@@ -28,11 +28,11 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t udacity-3-reverseproxy .
-  - docker tag udacity-3-reverseproxy fjenkel/udacity-3-reverseproxy:latest
+  - docker build -t ${PROJECT_NAME} .
+  - docker tag ${PROJECT_NAME} fjenkel/${PROJECT_NAME}:latest
 
 after_success:
   - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push fjenkel/udacity-3-reverseproxy
+  - docker push fjenkel/${PROJECT_NAME}
   - kubectl apply -f ./deploy/deployment.yaml
   - kubectl apply -f ./deploy/service.yaml
