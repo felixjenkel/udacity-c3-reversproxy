@@ -16,6 +16,11 @@ install:
   - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
   - cat ${HOME}/.kube/config
   - kubectl get nodes
+  - echo "--- INSTALL AWS CLI ---"
+  - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  - unzip awscliv2.zip
+  - sudo ./aws/install
+  - aws --version
   - echo "--- INSTALL PHASE DONE ---"
 
 # Scripts to be run such as tests
