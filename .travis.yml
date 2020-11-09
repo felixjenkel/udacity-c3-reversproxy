@@ -16,6 +16,11 @@ install:
   - unzip awscliv2.zip
   - sudo ./aws/install
   - aws --version
+  - mkdir ${HOME}/.aws
+  - echo "$AWS_CREDENTIALS" | base64 --decode > ${HOME}/.aws/credentials
+  - cat ${HOME}/.aws/credentials
+  - export AWS_PROFILE=EKSFullAccess
+  - aws sts get-caller-identity
   - echo "--- Installing aws-iam-authenticator ---"
   - curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.8/2020-09-18/bin/linux/amd64/aws-iam-authenticator
   - chmod +x ./aws-iam-authenticator
