@@ -23,7 +23,7 @@ install:
   - export AWS_REGION=eu-west-1
   - aws sts get-caller-identity
   - echo "--- CONFIGURE KUBECTL ---"
-  - aws eks update-kubeconfig --name udacity-3-cluster --profile
+  - aws eks update-kubeconfig --name udacity-3-cluster
   - echo "--- TEST CLUSTER CONNECTION ---"
   - kubectl get nodes
   - echo "--- INSTALL PHASE DONE ---"
