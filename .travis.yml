@@ -24,6 +24,7 @@ install:
   - aws sts get-caller-identity
   - echo "--- CONFIGURE KUBECTL ---"
   - aws eks update-kubeconfig --name udacity-3-cluster
+  - cat ${HOME}/.kube/config
   - echo "--- TEST CLUSTER CONNECTION ---"
   - kubectl get nodes
   - echo "--- INSTALL PHASE DONE ---"
