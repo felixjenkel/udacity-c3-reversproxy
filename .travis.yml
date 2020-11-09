@@ -20,9 +20,10 @@ install:
   - echo "$AWS_CREDENTIALS" | base64 --decode > ${HOME}/.aws/credentials
   - cat ${HOME}/.aws/credentials
   - export AWS_PROFILE=EKSFullAccess
+  - export AWS_REGION=eu-west-1
   - aws sts get-caller-identity
   - echo "--- CONFIGURE KUBECTL ---"
-  - aws eks update-kubeconfig --name udacity-3-cluster
+  - aws eks update-kubeconfig --name udacity-3-cluster --profile
   - echo "--- TEST CLUSTER CONNECTION ---"
   - kubectl get nodes
   - echo "--- INSTALL PHASE DONE ---"
